@@ -14,15 +14,15 @@ A minimal library of MongoDB error codes, names, and helper utilities. Useful fo
 Install with your favorite package manager:
 
 ```sh
-npm install mongodb-error-codes
+npm install mongo-error-codes
 ```
 
 ```sh
-yarn add mongodb-error-codes
+yarn add mongo-error-codes
 ```
 
 ```sh
-pnpm add mongodb-error-codes
+pnpm add mongo-error-codes
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ import {
   getErrorDescription,
   isKnownErrorCode,
   MongoErrorList,
-} from "mongodb-error-codes";
+} from "mongo-error-codes";
 
 console.log(getErrorName(11000)); // "DuplicateKey"
 console.log(getErrorCode("DuplicateKey")); // 11000
