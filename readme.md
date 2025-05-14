@@ -53,17 +53,37 @@ console.log(MongoErrorList);
 
 Returns the error name for a given code.
 
+```ts
+import { getErrorName } from "mongo-error-codes";
+console.log(getErrorName(11000)); // "DuplicateKey"
+```
+
 #### `getErrorCode(name: string): number | undefined`
 
 Returns the error code for a given name.
+
+```ts
+import { getErrorCode } from "mongo-error-codes";
+console.log(getErrorCode("DuplicateKey")); // 11000
+```
 
 #### `getErrorDescription(code: number): string | undefined`
 
 Returns the human-friendly description for a given code, if available.
 
+```ts
+import { getErrorDescription } from "mongo-error-codes";
+console.log(getErrorDescription(11000)); // e.g. "Duplicate key error collection"
+```
+
 #### `isKnownErrorCode(code: number): boolean`
 
 Returns `true` if the code is a known MongoDB error code.
+
+```ts
+import { isKnownErrorCode } from "mongo-error-codes";
+console.log(isKnownErrorCode(11000)); // true
+```
 
 ### Data Structures
 
