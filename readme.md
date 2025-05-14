@@ -47,25 +47,76 @@ console.log(MongoErrorList);
 
 ## API Reference
 
-### `getErrorName(code: number): string | undefined`
+### Functions
+
+#### `getErrorName(code: number): string | undefined`
 
 Returns the error name for a given code.
 
-### `getErrorCode(name: string): number | undefined`
+#### `getErrorCode(name: string): number | undefined`
 
 Returns the error code for a given name.
 
-### `getErrorDescription(code: number): string | undefined`
+#### `getErrorDescription(code: number): string | undefined`
 
 Returns the human-friendly description for a given code, if available.
 
-### `isKnownErrorCode(code: number): boolean`
+#### `isKnownErrorCode(code: number): boolean`
 
 Returns `true` if the code is a known MongoDB error code.
 
-### `MongoErrorList: MongoError[]`
+### Data Structures
 
-An array of all error code objects: `{ code, name, description? }`.
+#### `MongoErrorCodes` (enum)
+
+Enum of all MongoDB error codes, mapping names to their numeric values.
+
+```ts
+import { MongoErrorCodes } from "mongo-error-codes";
+console.log(MongoErrorCodes.DuplicateKey); // 11000
+```
+
+#### `MongoError` (interface)
+
+Represents a MongoDB error code object.
+
+```ts
+export interface MongoError {
+  code: number;
+  name: string;
+  description?: string;
+}
+```
+
+#### `MongoErrorList: MongoError[]`
+
+An array of all error code objects:
+
+```ts
+import { MongoErrorList } from "mongo-error-codes";
+console.log(MongoErrorList[0]);
+// { code: 1, name: "InternalError", description: "An unspecified internal error occurred." }
+```
+
+#### `MongoCodeErrorMap: Map<number, MongoError>`
+
+A map from error code to error object:
+
+```ts
+import { MongoCodeErrorMap } from "mongo-error-codes";
+console.log(MongoCodeErrorMap.get(11000));
+// { code: 11000, name: "DuplicateKey" }
+```
+
+#### `MongoNameErrorMap: Map<string, MongoError>`
+
+A map from error name to error object:
+
+```ts
+import { MongoNameErrorMap } from "mongo-error-codes";
+console.log(MongoNameErrorMap.get("DuplicateKey"));
+// { code: 11000, name: "DuplicateKey" }
+```
 
 ## Types
 
