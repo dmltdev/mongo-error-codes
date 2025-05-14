@@ -1,6 +1,6 @@
 {
   "name": "mongo-error-codes",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A minimal library of MongoDB error codes, names, and helper utilities for error handling, logging, and developer tools.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
