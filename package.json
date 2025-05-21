@@ -1,12 +1,13 @@
 {
   "name": "mongo-error-codes",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": "https://github.com/dmltdev/mongo-error-codes",
   "description": "A minimal library of MongoDB error codes, names, and helper utilities for error handling, logging, and developer tools.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "mongodb",
