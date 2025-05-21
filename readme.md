@@ -85,6 +85,18 @@ import { isKnownErrorCode } from "mongo-error-codes";
 console.log(isKnownErrorCode(11000)); // true
 ```
 
+#### `getErrorDetails(input: number | string): { code: number; name: string; description?: string } | undefined`
+
+Returns the full error object (code, name, description) for a given error code or name.
+
+```ts
+import { getErrorDetails } from "mongo-error-codes";
+console.log(getErrorDetails(11000));
+// { code: 11000, name: "DuplicateKey", description: "Duplicate key error collection" }
+console.log(getErrorDetails("DuplicateKey"));
+// { code: 11000, name: "DuplicateKey", description: "Duplicate key error collection" }
+```
+
 ### Data Structures
 
 #### `MongoErrorCodes` (enum)

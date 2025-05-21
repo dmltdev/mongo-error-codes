@@ -42,3 +42,19 @@ export function getErrorDescription(code: number): string | undefined {
 export function isKnownErrorCode(code: number): boolean {
   return MongoCodeErrorMap.has(code);
 }
+
+/**
+ * Get the full error details (code, name, description) for a given error code or name.
+ *
+ * @param input - The error code (number) or error name (string).
+ * @returns The full error object or undefined if not found.
+ */
+export function getErrorDetails(
+  input: number | string
+): { code: number; name: string; description?: string } | undefined {
+  if (typeof input === "number") {
+    return MongoCodeErrorMap.get(input);
+  } else {
+    return MongoNameErrorMap.get(input);
+  }
+}
