@@ -130,6 +130,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 28,
     name: "PathNotViable",
+    description: "A query or operation references a non-existent field or path in a document."
   },
   {
     code: 29,
