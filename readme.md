@@ -108,6 +108,16 @@ import { MongoErrorCodes } from "mongo-error-codes";
 console.log(MongoErrorCodes.DuplicateKey); // 11000
 ```
 
+#### `ErrorCategory` (type)
+
+Represents an error category
+
+```ts
+import { ErrorCategory } from 'monog-error-codes'
+
+const errorCategory: ErrorCategory = "NotPrimaryError";
+```
+
 #### `MongoError` (interface)
 
 Represents a MongoDB error code object.
@@ -117,6 +127,7 @@ export interface MongoError {
   code: number;
   name: string;
   description?: string;
+  categories?: ErrorCategory;
 }
 ```
 

@@ -30,11 +30,13 @@ export const MongoErrorList: MongoError[] = [
     code: 6,
     name: "HostUnreachable",
     description: "The host is unreachable.",
+    categories: ["NetworkError", "RetriableError"],
   },
   {
     code: 7,
     name: "HostNotFound",
     description: "The host could not be found.",
+    categories: ["NetworkError", "RetriableError"],
   },
   {
     code: 9,
@@ -68,6 +70,7 @@ export const MongoErrorList: MongoError[] = [
     code: 15,
     name: "Overflow",
     description: "A value overflowed the allowed range.",
+    categories: ["ValidationError"],
   },
   {
     code: 16,
@@ -102,6 +105,7 @@ export const MongoErrorList: MongoError[] = [
     code: 22,
     name: "InvalidBSON",
     description: "The BSON is invalid.",
+    categories: ["ValidationError"],
   },
   {
     code: 23,
@@ -112,6 +116,7 @@ export const MongoErrorList: MongoError[] = [
     code: 24,
     name: "LockTimeout",
     description: "A lock timed out.",
+    categories: ["Interruption"],
   },
   {
     code: 25,
@@ -130,7 +135,8 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 28,
     name: "PathNotViable",
-    description: "A query or operation references a non-existent field or path in a document."
+    description:
+      "A query or operation references a non-existent field or path in a document.",
   },
   {
     code: 29,
@@ -193,6 +199,7 @@ export const MongoErrorList: MongoError[] = [
     code: 43,
     name: "CursorNotFound",
     description: "The cursor was not found.",
+    categories: ["CursorInvalidatedError"],
   },
   {
     code: 45,
@@ -220,6 +227,7 @@ export const MongoErrorList: MongoError[] = [
     code: 50,
     name: "MaxTimeMSExpired",
     description: "The operation exceeded the specified maxTimeMS.",
+    categories: ["Interruption", "ExceededTimeLimitError"],
   },
   {
     code: 51,
@@ -273,6 +281,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 64,
     name: "WriteConcernTimeout",
+    categories: ["WriteConcernError"],
   },
   {
     code: 65,
@@ -317,6 +326,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 75,
     name: "WriteConcernLegacyOK",
+    categories: ["WriteConcernError"],
   },
   {
     code: 76,
@@ -333,6 +343,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 79,
     name: "UnknownReplWriteConcern",
+    categories: ["WriteConcernError"],
   },
   {
     code: 80,
@@ -365,14 +376,17 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 89,
     name: "NetworkTimeout",
+    categories: ["NetworkError", "RetriableError", "NetworkTimeoutError"],
   },
   {
     code: 90,
     name: "CallbackCanceled",
+    categories: ["CancellationError"],
   },
   {
     code: 91,
     name: "ShutdownInProgress",
+    categories: ["ShutdownError", "CancellationError", "RetriableError"],
   },
   {
     code: 92,
@@ -393,6 +407,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 96,
     name: "OperationFailed",
+    categories: ["CursorInvalidatedError"],
   },
   {
     code: 97,
@@ -401,6 +416,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 98,
     name: "DBPathInUse",
+    categories: ["WriteConcernError"],
   },
   {
     code: 100,
@@ -489,6 +505,8 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 121,
     name: "DocumentValidationFailure",
+    description:
+      "The document failed validation against the collection's schema or validation rules.",
   },
   {
     code: 123,
@@ -585,6 +603,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 148,
     name: "ReadConcernMajorityNotEnabled",
+    categories: ["VoteAbortError"],
   },
   {
     code: 149,
@@ -593,6 +612,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 150,
     name: "StaleEpoch",
+    categories: ["StaleShardVersionError", "NeedRetargettingError"],
   },
   {
     code: 151,
@@ -689,6 +709,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 175,
     name: "QueryPlanKilled",
+    categories: ["CursorInvalidatedError"],
   },
   {
     code: 176,
@@ -741,6 +762,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 188,
     name: "IncompatibleServerVersion",
+    categories: ["NotPrimaryError", "RetriableError"],
   },
   {
     code: 189,
@@ -785,6 +807,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 202,
     name: "NetworkInterfaceExceededTimeLimit",
+    categories: ["ExceededTimeLimitError", "NetworkTimeoutError"],
   },
   {
     code: 203,
@@ -869,6 +892,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 223,
     name: "IllegalOpMsgFlag",
+    categories: ["ConnectionFatalMessageParseError"],
   },
   {
     code: 224,
@@ -877,6 +901,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 225,
     name: "TransactionTooOld",
+    categories: ["VoteAbortError"],
   },
   {
     code: 226,
@@ -909,6 +934,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 233,
     name: "TooManyDocumentSequences",
+    categories: ["ConnectionFatalMessageParseError"],
   },
   {
     code: 234,
@@ -925,6 +951,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 237,
     name: "CursorKilled",
+    categories: ["Interruption", "CursorInvalidatedError"],
   },
   {
     code: 238,
@@ -933,6 +960,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 239,
     name: "SnapshotTooOld",
+    categories: ["SnapshotError"],
   },
   {
     code: 240,
@@ -957,6 +985,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 246,
     name: "SnapshotUnavailable",
+    categories: ["SnapshotError"],
   },
   {
     code: 247,
@@ -973,10 +1002,12 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 250,
     name: "StaleChunkHistory",
+    categories: ["SnapshotError"],
   },
   {
     code: 251,
     name: "NoSuchTransaction",
+    categories: ["VoteAbortError"],
   },
   {
     code: 252,
@@ -1021,10 +1052,12 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 262,
     name: "ExceededTimeLimit",
+    categories: ["Interruption", "ExceededTimeLimitError", "RetriableError"],
   },
   {
     code: 263,
     name: "OperationNotSupportedInTransaction",
+    categories: ["VoteAbortError"],
   },
   {
     code: 264,
@@ -1061,6 +1094,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 272,
     name: "MigrationConflict",
+    categories: ["SnapshotError"],
   },
   {
     code: 273,
@@ -1073,6 +1107,8 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 275,
     name: "ExchangePassthrough",
+    description:
+      "Internal error used during aggregation exchange execution. Not intended for reuse outside of this context.",
   },
   {
     code: 276,
@@ -1089,18 +1125,22 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 279,
     name: "ClientDisconnect",
+    categories: ["Interruption"],
   },
   {
     code: 280,
     name: "ChangeStreamFatalError",
+    categories: ["NonResumableChangeStreamError"],
   },
   {
     code: 281,
     name: "TransactionCoordinatorSteppingDown",
+    categories: ["Interruption"],
   },
   {
     code: 282,
     name: "TransactionCoordinatorReachedAbortDecision",
+    categories: ["Interruption"],
   },
   {
     code: 283,
@@ -1117,22 +1157,27 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 286,
     name: "ChangeStreamHistoryLost",
+    categories: ["NonResumableChangeStreamError"],
   },
   {
     code: 287,
     name: "TransactionCoordinatorDeadlineTaskCanceled",
+    categories: ["InternalOnly"],
   },
   {
     code: 288,
     name: "ChecksumMismatch",
+    categories: ["ConnectionFatalMessageParseError"],
   },
   {
     code: 289,
     name: "WaitForMajorityServiceEarlierOpTimeAvailable",
+    categories: ["InternalOnly"],
   },
   {
     code: 290,
     name: "TransactionExceededLifetimeLimitSeconds",
+    categories: ["Interruption", "ExceededTimeLimitError"],
   },
   {
     code: 291,
@@ -1185,10 +1230,13 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 303,
     name: "SplitHorizonChange",
+    categories: ["CloseConnectionError"],
   },
   {
     code: 304,
     name: "ShardInvalidatedForTargeting",
+    description:
+      "A query is executed on a sharded cluster, and the shard key values for the targeted documents have changed during the query's execution.",
   },
   {
     code: 307,
@@ -1205,14 +1253,17 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 310,
     name: "PeriodicJobIsStopped",
+    categories: ["CancellationError"],
   },
   {
     code: 311,
     name: "TransactionCoordinatorCanceled",
+    categories: ["InternalOnly"],
   },
   {
     code: 312,
     name: "OperationIsKilledAndDelisted",
+    categories: ["InternalOnly"],
   },
   {
     code: 313,
@@ -1221,18 +1272,22 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 314,
     name: "ObjectIsBusy",
+    categories: ["CursorInvalidatedError"],
   },
   {
     code: 315,
     name: "TooStaleToSyncFromSource",
+    categories: ["InternalOnly"],
   },
   {
     code: 316,
     name: "QueryTrialRunCompleted",
+    categories: ["InternalOnly"],
   },
   {
     code: 317,
     name: "ConnectionPoolExpired",
+    categories: ["NetworkError", "RetriableError", "InternalOnly"],
   },
   {
     code: 318,
@@ -1253,14 +1308,17 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 322,
     name: "APIVersionError",
+    categories: ["VersionedAPIError"],
   },
   {
     code: 323,
     name: "APIStrictError",
+    categories: ["VersionedAPIError"],
   },
   {
     code: 324,
     name: "APIDeprecationError",
+    categories: ["VersionedAPIError"],
   },
   {
     code: 325,
@@ -1297,6 +1355,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 333,
     name: "ServiceExecutorInShutdown",
+    categories: ["ShutdownError", "CancellationError", "InternalOnly"],
   },
   {
     code: 334,
@@ -1309,6 +1368,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 9001,
     name: "SocketException",
+    categories: ["NetworkError", "RetriableError"],
   },
   {
     code: 10003,
@@ -1317,6 +1377,7 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 10107,
     name: "NotWritablePrimary",
+    categories: ["NotPrimaryError", "RetriableError"],
   },
   {
     code: 10334,
@@ -1329,14 +1390,22 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 11600,
     name: "InterruptedAtShutdown",
+    categories: [
+      "Interruption",
+      "ShutdownError",
+      "CancellationError",
+      "RetriableError",
+    ],
   },
   {
     code: 11601,
     name: "Interrupted",
+    categories: ["Interruption"],
   },
   {
     code: 11602,
     name: "InterruptedDueToReplStateChange",
+    categories: ["Interruption", "NotPrimaryError", "RetriableError"],
   },
   {
     code: 12586,
@@ -1357,14 +1426,17 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 13388,
     name: "StaleConfig",
+    categories: ["StaleShardVersionError", "NeedRetargettingError"],
   },
   {
     code: 13435,
     name: "NotPrimaryNoSecondaryOk",
+    categories: ["NotPrimaryError", "RetriableError"],
   },
   {
     code: 13436,
     name: "NotPrimaryOrSecondary",
+    categories: ["NotPrimaryError", "RetriableError"],
   },
   {
     code: 14031,
@@ -1373,5 +1445,6 @@ export const MongoErrorList: MongoError[] = [
   {
     code: 46841,
     name: "ClientMarkedKilled",
+    categories: ["Interruption", "CancellationError"],
   },
 ];
