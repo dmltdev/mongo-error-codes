@@ -8,6 +8,7 @@ A minimal library of MongoDB error codes, names, and helper utilities. Useful fo
 - Human-friendly descriptions (where available)
 - Fast lookup helpers: code ↔ name, code → description
 - TypeScript types for safety and autocompletion
+- 100% test coverage of helper utilities.
 
 ## Installation
 
