@@ -10,7 +10,7 @@ export default defineConfig({
       exclude: ["src/**/index.ts", "src/**/constants.ts"],
       include: ["src/helpers/**/*.ts"],
       provider: "v8",
-      reporter: ["text", "json", "html"],
+      reporter: ["text", "lcov", "json-summary", "html"],
       reportsDirectory: "./coverage",
     },
   },

@@ -2,6 +2,8 @@
 
 A minimal library of MongoDB error codes, names, and helper utilities. Useful for error handling, logging, and building developer tools that interact with MongoDB.
 
+[![Coverage](https://codecov.io/gh/dmltdev/mongo-error-codes/branch/main/graph/badge.svg)](https://codecov.io/gh/dmltdev/mongo-error-codes)
+
 ## Features
 
 - All official MongoDB error codes and names
@@ -114,7 +116,7 @@ console.log(MongoErrorCodes.DuplicateKey); // 11000
 Represents an error category
 
 ```ts
-import { ErrorCategory } from 'monog-error-codes'
+import { ErrorCategory } from "monog-error-codes";
 
 const errorCategory: ErrorCategory = "NotPrimaryError";
 ```
