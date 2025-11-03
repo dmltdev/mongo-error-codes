@@ -7,6 +7,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "dev": "tsc -w",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -20,6 +23,9 @@
   "author": "dmltdev <dmltdev@proton.me>",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "5.8.3"
+    "@vitest/browser": "4.0.6",
+    "@vitest/coverage-v8": "4.0.6",
+    "typescript": "5.9.3",
+    "vitest": "4.0.6"
   }
 }
