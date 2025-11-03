@@ -35,7 +35,7 @@ Thank you for your interest in contributing to mongo-error-codes! This document 
   ```
 
 - **Code Style**  
-  Ensure your code follows the project's style guidelines. Consider using ESLint and Prettier.
+  Ensure your code follows the project's style guidelines defined in `biome.json`.
 
 - **Testing**  
   Run tests to ensure your changes work as expected:
