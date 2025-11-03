@@ -3,12 +3,23 @@
   "version": "1.0.9",
   "repository": "https://github.com/dmltdev/mongo-error-codes",
   "description": "A minimal library of MongoDB error codes, names, and helper utilities for error handling, logging, and developer tools.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc -w",
-    "test": "vitest",
+    "build": "rslib build",
+    "build:size": "pnpm build && echo \"Raw: $(du -h dist/index.mjs | cut -f1)\" && echo \"Gzipped: $(gzip -c dist/index.mjs | wc -c | numfmt --to=iec)\"",
+    "check": "biome check --write",
+    "dev": "rslib build --watch",
+    "format": "biome format --write",
+    "test": "vitest run",
     "coverage": "vitest run --coverage",
     "prepublishOnly": "npm run build"
   },
@@ -23,6 +34,9 @@
   "author": "dmltdev <dmltdev@proton.me>",
   "license": "MIT",
   "devDependencies": {
+    "@biomejs/biome": "2.2.6",
+    "@rslib/core": "0.17.0",
+    "@types/node": "22.18.12",
     "@vitest/browser": "4.0.6",
     "@vitest/coverage-v8": "4.0.6",
     "typescript": "5.9.3",

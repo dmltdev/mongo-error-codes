@@ -10,7 +10,8 @@ A minimal library of MongoDB error codes, names, and helper utilities. Useful fo
 - Human-friendly descriptions (where available)
 - Fast lookup helpers: code ↔ name, code → description
 - TypeScript types for safety and autocompletion
-- 100% test coverage of helper utilities.
+- 100% test coverage of helper utilities
+- Raw 36kB, gzipped 8.5kB
 
 ## Installation
 
@@ -116,7 +117,7 @@ console.log(MongoErrorCodes.DuplicateKey); // 11000
 Represents an error category
 
 ```ts
-import { ErrorCategory } from "monog-error-codes";
+import { ErrorCategory } from "mongo-error-codes";
 
 const errorCategory: ErrorCategory = "NotPrimaryError";
 ```
