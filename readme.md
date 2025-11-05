@@ -37,6 +37,8 @@ import {
   getErrorCode,
   getErrorDescription,
   isKnownErrorCode,
+  getErrorDetails,
+  toError,
   MongoErrorList,
 } from "mongo-error-codes";
 
@@ -44,6 +46,16 @@ console.log(getErrorName(11000)); // "DuplicateKey"
 console.log(getErrorCode("DuplicateKey")); // 11000
 console.log(getErrorDescription(11000)); // description or undefined
 console.log(isKnownErrorCode(11000)); // true
+
+// Get full error details
+const errorDetails = getErrorDetails(11000);
+console.log(errorDetails); // { code: 11000, name: "DuplicateKey", ... }
+
+// Convert to JavaScript Error
+if (errorDetails) {
+  const jsError = toError(errorDetails);
+  console.log(jsError.message); // "[11000] DuplicateKey: Duplicate key error collection"
+}
 
 // List all error codes
 console.log(MongoErrorList);
@@ -99,6 +111,44 @@ console.log(getErrorDetails(11000));
 // { code: 11000, name: "DuplicateKey", description: "Duplicate key error collection" }
 console.log(getErrorDetails("DuplicateKey"));
 // { code: 11000, name: "DuplicateKey", description: "Duplicate key error collection" }
+```
+
+#### `toError(mongoError: MongoError, formatter?: (error: MongoError) => string): Error`
+
+Converts a MongoDB error object to a JavaScript Error with a formatted message. Optionally accepts a custom formatter function.
+
+```ts
+import { toError, getErrorDetails } from "mongo-error-codes";
+
+const mongoError = getErrorDetails(11000);
+if (mongoError) {
+  // Default formatting
+  const jsError = toError(mongoError);
+  console.log(jsError.message); // "[11000] DuplicateKey: Duplicate key error collection"
+  console.log(jsError.cause); // Original MongoError object
+}
+
+// With categories
+const errorWithCategories = {
+  code: 6,
+  name: "HostUnreachable",
+  description: "The host is unreachable.",
+  categories: ["NetworkError", "RetriableError"]
+};
+const jsError = toError(errorWithCategories);
+console.log(jsError.message); 
+// "[6] HostUnreachable: The host is unreachable. | NetworkError, RetriableError"
+
+// Custom formatter
+const customError = toError(errorWithCategories, (error) => 
+  `MongoDB ${error.name} (${error.code}): ${error.description}`
+);
+console.log(customError.message);
+// "MongoDB HostUnreachable (6): The host is unreachable."
+
+// Simple custom formatter
+const simpleError = toError(mongoError, (error) => `Error ${error.code}`);
+console.log(simpleError.message); // "Error 11000"
 ```
 
 ### Data Structures

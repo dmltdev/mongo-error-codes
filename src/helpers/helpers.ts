@@ -1,4 +1,5 @@
 import { MongoCodeErrorMap, MongoNameErrorMap } from "../data/map";
+import { MongoError } from "../types";
 
 /**
  * Get the name of the error code.
@@ -57,4 +58,36 @@ export function getErrorDetails(
   } else {
     return MongoNameErrorMap.get(input);
   }
+}
+
+/**
+ * Convert a MongoDB error to a JavaScript error.
+ *
+ * @param mongoError - The MongoDB error.
+ * @param formatter - Optional custom formatter function that takes a MongoError and returns a string.
+ * @returns The JavaScript error.
+ */
+export function toError(
+  mongoError: MongoError,
+  formatter?: (error: MongoError) => string
+): Error {
+  let message: string;
+
+  if (formatter) {
+    message = formatter(mongoError);
+  } else {
+    message = `[${mongoError.code}] ${mongoError.name}`;
+
+    if (mongoError.description) {
+      message += `: ${mongoError.description}`;
+    }
+
+    if (mongoError.categories?.length) {
+      message += ` | ${mongoError.categories.join(", ")}`;
+    }
+  }
+
+  return new Error(message, {
+    cause: mongoError,
+  });
 }
