@@ -11,7 +11,7 @@ A minimal library of MongoDB error codes, names, and helper utilities. Useful fo
 - Fast lookup helpers: code ↔ name, code → description
 - TypeScript types for safety and autocompletion
 - 100% test coverage of helper utilities
-- Raw 36kB, gzipped 8.5kB
+- Raw 36kB, gzipped 8.6kB
 
 ## Installation
 
