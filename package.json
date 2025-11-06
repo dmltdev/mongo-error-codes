@@ -1,6 +1,6 @@
 {
   "name": "mongo-error-codes",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "type": "module",
   "repository": "https://github.com/dmltdev/mongo-error-codes",
   "description": "A minimal library of MongoDB error codes, names, and helper utilities for error handling, logging, and developer tools.",
