@@ -51,5 +51,3 @@ export interface MongoError {
    */
   categories?: ErrorCategory[];
 }
-
-const errorCategory: ErrorCategory = "NotPrimaryError";

@@ -1,6 +1,7 @@
 {
   "name": "mongo-error-codes",
   "version": "1.1.3",
+  "type": "module",
   "repository": "https://github.com/dmltdev/mongo-error-codes",
   "description": "A minimal library of MongoDB error codes, names, and helper utilities for error handling, logging, and developer tools.",
   "exports": {
@@ -15,7 +16,7 @@
   ],
   "scripts": {
     "build": "rslib build",
-    "build:size": "pnpm build && echo \"Raw: $(du -h dist/index.mjs | cut -f1)\" && echo \"Gzipped: $(gzip -c dist/index.mjs | wc -c | numfmt --to=iec)\"",
+    "build:size": "pnpm build && echo \"Raw: $(du -h dist/index.js | cut -f1)\" && echo \"Gzipped: $(gzip -c dist/index.js | wc -c | numfmt --to=iec)\"",
     "check": "biome check --write",
     "dev": "rslib build --watch",
     "format": "biome format --write",

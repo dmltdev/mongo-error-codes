@@ -11,7 +11,7 @@ A minimal library of MongoDB error codes, names, and helper utilities. Useful fo
 - Fast lookup helpers: code ↔ name, code → description
 - TypeScript types for safety and autocompletion
 - 100% test coverage of helper utilities
-- Raw 36kB, gzipped 8.6kB
+- Raw 28kB, gzipped 7kB
 
 ## Installation
 
@@ -153,9 +153,9 @@ console.log(simpleError.message); // "Error 11000"
 
 ### Data Structures
 
-#### `MongoErrorCodes` (enum)
+#### `MongoErrorCodes` (const object)
 
-Enum of all MongoDB error codes, mapping names to their numeric values.
+Const object containing all MongoDB error codes, mapping error names to their numeric values.
 
 ```ts
 import { MongoErrorCodes } from "mongo-error-codes";
@@ -195,25 +195,33 @@ console.log(MongoErrorList[0]);
 // { code: 1, name: "InternalError", description: "An unspecified internal error occurred." }
 ```
 
-#### `MongoCodeErrorMap: Map<number, MongoError>`
+#### `getMongoCodeErrorMap(): Map<number, MongoError>`
 
-A map from error code to error object:
+Get a map from error code to error object:
 
 ```ts
-import { MongoCodeErrorMap } from "mongo-error-codes";
-console.log(MongoCodeErrorMap.get(11000));
+import { getMongoCodeErrorMap } from "mongo-error-codes";
+console.log(getMongoCodeErrorMap().get(11000));
 // { code: 11000, name: "DuplicateKey" }
 ```
 
-#### `MongoNameErrorMap: Map<string, MongoError>`
+#### `getMongoNameErrorMap(): Map<string, MongoError>`
 
-A map from error name to error object:
+Get a map from error name to error object:
 
 ```ts
-import { MongoNameErrorMap } from "mongo-error-codes";
-console.log(MongoNameErrorMap.get("DuplicateKey"));
+import { getMongoNameErrorMap } from "mongo-error-codes";
+console.log(getMongoNameErrorMap().get("DuplicateKey"));
 // { code: 11000, name: "DuplicateKey" }
 ```
+
+#### `MongoCodeErrorMap: Map<number, MongoError>` (deprecated)
+
+**⚠️ Deprecated:** Use `getMongoCodeErrorMap()` instead for better bundle size optimization.
+
+#### `MongoNameErrorMap: Map<string, MongoError>` (deprecated)
+
+**⚠️ Deprecated:** Use `getMongoNameErrorMap()` instead for better bundle size optimization.
 
 ## Types
 

@@ -1,5 +1,5 @@
-import { MongoCodeErrorMap, MongoNameErrorMap } from "../data/map";
-import { MongoError } from "../types";
+import { getMongoCodeErrorMap, getMongoNameErrorMap } from '../data/map';
+import type { MongoError } from '../types';
 
 /**
  * Get the name of the error code.
@@ -8,7 +8,7 @@ import { MongoError } from "../types";
  * @returns The name of the error code.
  */
 export function getErrorName(code: number): string | undefined {
-  const entry = MongoCodeErrorMap.get(code);
+  const entry = getMongoCodeErrorMap().get(code);
   return entry ? entry.name : undefined;
 }
 
@@ -19,7 +19,7 @@ export function getErrorName(code: number): string | undefined {
  * @returns The error code.
  */
 export function getErrorCode(name: string): number | undefined {
-  const entry = MongoNameErrorMap.get(name);
+  const entry = getMongoNameErrorMap().get(name);
   return entry ? entry.code : undefined;
 }
 
@@ -30,7 +30,7 @@ export function getErrorCode(name: string): number | undefined {
  * @returns The description of the error code.
  */
 export function getErrorDescription(code: number): string | undefined {
-  const entry = MongoCodeErrorMap.get(code);
+  const entry = getMongoCodeErrorMap().get(code);
   return entry ? entry.description : undefined;
 }
 
@@ -41,7 +41,7 @@ export function getErrorDescription(code: number): string | undefined {
  * @returns True if the error code is known, false otherwise.
  */
 export function isKnownErrorCode(code: number): boolean {
-  return MongoCodeErrorMap.has(code);
+  return getMongoCodeErrorMap().has(code);
 }
 
 /**
@@ -51,12 +51,12 @@ export function isKnownErrorCode(code: number): boolean {
  * @returns The full error object or undefined if not found.
  */
 export function getErrorDetails(
-  input: number | string
+  input: number | string,
 ): { code: number; name: string; description?: string } | undefined {
-  if (typeof input === "number") {
-    return MongoCodeErrorMap.get(input);
+  if (typeof input === 'number') {
+    return getMongoCodeErrorMap().get(input);
   } else {
-    return MongoNameErrorMap.get(input);
+    return getMongoNameErrorMap().get(input);
   }
 }
 
@@ -69,7 +69,7 @@ export function getErrorDetails(
  */
 export function toError(
   mongoError: MongoError,
-  formatter?: (error: MongoError) => string
+  formatter?: (error: MongoError) => string,
 ): Error {
   let message: string;
 
@@ -83,7 +83,7 @@ export function toError(
     }
 
     if (mongoError.categories?.length) {
-      message += ` | ${mongoError.categories.join(", ")}`;
+      message += ` | ${mongoError.categories.join(', ')}`;
     }
   }
 

@@ -1,2 +1,2 @@
-export * from "./map";
-export * from "./list";
+export * from './list';
+export * from './map';
