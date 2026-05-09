@@ -35,12 +35,12 @@
   "author": "dmltdev <dmltdev@proton.me>",
   "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "2.2.6",
-    "@rslib/core": "0.17.0",
+    "@biomejs/biome": "2.4.14",
+    "@rslib/core": "0.21.4",
     "@types/node": "22.18.12",
-    "@vitest/browser": "4.0.6",
-    "@vitest/coverage-v8": "4.0.6",
+    "@vitest/browser": "4.1.5",
+    "@vitest/coverage-v8": "4.1.5",
     "typescript": "5.9.3",
-    "vitest": "4.0.6"
+    "vitest": "4.1.5"
   }
 }
